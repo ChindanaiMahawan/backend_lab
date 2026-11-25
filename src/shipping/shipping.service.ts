@@ -10,8 +10,12 @@ const ZONE_FEES: Record<string, number> = {
 export class ShippingService {
   convert(weightRaw?: unknown, zoneRaw?: unknown) {
     // ตรวจ weight
-    if (typeof weightRaw !== 'string' || weightRaw.trim() === '') {
+    if(typeof weightRaw === 'undefined' || typeof zoneRaw === 'undefined') {
+      throw new BadRequestException('กรุณาใส่น้ำหนักและโซน');
+    } else if(typeof weightRaw !== 'string' || weightRaw.trim() === '') {
       throw new BadRequestException('กรุณาใส่น้ำหนัก');
+    } else if(typeof zoneRaw !== 'string' || zoneRaw.trim() === '') {
+      throw new BadRequestException('กรุณาใส่โซน');
     }
     const weight = Number(weightRaw);
     if (!Number.isFinite(weight) || weight <= 0) {
