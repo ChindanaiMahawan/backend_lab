@@ -13,10 +13,13 @@ const MAX_FINE = 500;
 export class FineService {
   convert(daysRaw?: unknown, typeRaw?: unknown) {
     // ตรวจ days: ต้องเป็นจำนวนเต็ม >= 0
-    
     if (typeof daysRaw !== 'string' || daysRaw.trim() === '') {
       throw new BadRequestException('กรุณาใส่จำนวนวัน');
+    } 
+    if (typeof typeRaw !== 'string' || typeRaw.trim() === '') {
+      throw new BadRequestException('กรุณาใส่ประเภท');
     }
+
     const days = Number(daysRaw);
     if (!Number.isInteger(days) || days < 0) {
       throw new BadRequestException('วันน้อยกว่า0และต้องเป็นจำนวนเต็มเท่านั้น');

@@ -13,11 +13,9 @@ const RATE_TIER2 = 4;   // ส่วนที่เกินหน่วยล�
 export class ElectricityService {
   convert(unitsRaw?: unknown, typeRaw?: unknown) {
     // ตรวจ units: ต้องเป็นจำนวนเต็ม >= 0
-    if (typeof unitsRaw === 'undefined' || typeof typeRaw === 'undefined') {
-      throw new BadRequestException('กรุณาใส่หน่วยการใช้ไฟฟ้าและประเภท');
-    } else if (typeof unitsRaw !== 'string' || unitsRaw.trim() === '') {
+    if (typeof unitsRaw !== 'string' || unitsRaw.trim() === '') {
       throw new BadRequestException('กรุณาใส่หน่วยการใช้ไฟฟ้า');
-    } else if (typeof typeRaw !== 'string' || typeRaw.trim() === '') {
+    }if (typeof typeRaw !== 'string' || typeRaw.trim() === '') {
       throw new BadRequestException('กรุณาใส่ประเภท');
     }
     const units = Number(unitsRaw);
